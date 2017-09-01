@@ -1,5 +1,5 @@
 # 欢迎使用 bee.js
----
+
 
 ##使用：
 
@@ -450,7 +450,6 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 
 #待续...
 
-------
 
 
 ###作者 [Mr.Lin]
