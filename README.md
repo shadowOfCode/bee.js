@@ -389,7 +389,7 @@ Bee.RegexUtils.isPatternMustContain("1234567009",conditions);
 ```
 true
 ```
-###7、日期工具
+### 7、日期工具
 - [x] 获取当前时间
  > getCurrentTime:function()
 
