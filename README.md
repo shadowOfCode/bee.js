@@ -1,6 +1,8 @@
 # 欢迎使用 bee.js
 ---
+
 ##使用：
+
 ```javascript
 <!--area.js存放区域编码的一个常量。由于bee.js里面的getPersonInfo18()方法需要调用这个常量，所以在bee.js之前引入。如果不需要用到这个方法也可以不引入area.js-->
 <script type="text/javascript" src="js/area.js" ></script>
@@ -386,9 +388,70 @@ Bee.RegexUtils.isPatternMustContain("1234567009",conditions);
 ```
 true
 ```
----
+###7、日期工具
+- [x] 获取当前时间
+ > getCurrentTime:function()
+
+```
+Bee.DateUtils.getCurrentTime();
+```
+```
+2017-9-1 16:28:50
+```
+
+- [x] 	/*
+		 * 比较时间大小
+		 * time1>time2 return 1
+		 * time1<time2 return -1
+		 * time1==time2 return 0
+		 */
+> compareTime: function(time1, time2)
+
+- [x] 是否闰年
+>	isLeapYear: function(year) 
+
+- [x] 获取某个月的天数，从0开始
+>	getDaysOfMonth: function(year, month)
+getDaysOfMonth2: function(year, month)
+
+- [x] 距离现在几天的日期：负数表示今天之前的日期，0表示今天，整数表示未来的日期. 如-1表示昨天的日期，0表示今天，2表示后天
+	>	fromToday: function(days) 
+
+- [x] /**
+		 * 日期时间格式化
+		 * @param {Object} dateTime 需要格式化的日期时间
+		 * @param {String} pattern  格式化的模式，
+		 * 如yyyy-MM-dd hh(HH):mm:ss.S a k K E D F w W z Z
+		 */
+>	formt: function(dateTime, pattern)
+
+```
+//demo1
+Bee.DateUtils.formt(new Date(),'yyyy-MM-dd hh(HH):mm:ss.S a k K E D F w W z Z');
+```
+```
+2017-09-01 04(16):37:25.246 下午 16 4 五 244 0 35 1 GMT +0800
+```
+```
+//demo2
+Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 星期E 今年的第D天  这个月的第W周 今年的第w周');
+```
+```
+2017年09月01日  下午 05(17)时07分14秒678毫秒 星期五 今年的第244天  这个月的第1周 今年的第35周
+```
+- [x] /**
+		 * 计算一个日期是当年的第几天
+		 * @param {Object} date
+		 */
+	>	dayOfTheYear: function(date)
+
+- [x] //获得时区名和值
+> getZoneNameValue: function(dateObj) 
+
 #待续...
+
 ------
+
 
 ###作者 [Mr.Lin]
 >QQ:1510454219@qq.com   
