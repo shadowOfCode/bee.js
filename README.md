@@ -1,14 +1,15 @@
 # 欢迎使用 bee.js
 
+---
 
-##使用：
+## 使用：
 
 ```javascript
 <!--area.js存放区域编码的一个常量。由于bee.js里面的getPersonInfo18()方法需要调用这个常量，所以在bee.js之前引入。如果不需要用到这个方法也可以不引入area.js-->
 <script type="text/javascript" src="js/area.js" ></script>
 <script type="text/javascript" src="js/bee.js" ></script>
 ```
-##该javaScript库主要包括了如下模块：
+## 该javaScript库主要包括了如下模块：
 ### 1、手机号码校验； 
 
 - [x] //电话号码
@@ -448,11 +449,12 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 - [x] //获得时区名和值
 > getZoneNameValue: function(dateObj) 
 
-#待续...
+---
+
+# 待续...
 
 
-
-###作者 [Mr.Lin]
+### 作者 [Mr.Lin]
 >QQ:1510454219@qq.com   
 2017 年 09月 01日    
 
