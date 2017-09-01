@@ -1,5 +1,11 @@
 # 欢迎使用 bee.js
 ---
+##使用：
+```javascript
+<!--area.js存放区域编码的一个常量。由于bee.js里面的getPersonInfo18()方法需要调用这个常量，所以在bee.js之前引入。如果不需要用到这个方法也可以不引入area.js-->
+<script type="text/javascript" src="js/area.js" ></script>
+<script type="text/javascript" src="js/bee.js" ></script>
+```
 ##该javaScript库主要包括了如下模块：
 ### 1、手机号码校验； 
 
@@ -32,6 +38,21 @@
 	>	isIdCard18: function(idCard) 
 - [x]	//根据18身份证号码获取人员信息
 	>	getPersonInfo18:function(idCard)
+
+```javascript
+//Demo
+Bee.IdCardUtils.getPersonInfo18('350624199506094038');
+```
+```
+//结果
+{
+	address: "福建省 漳州市 诏安县",
+	sex: "男",
+	birthday: "1995年06月09日",
+	age: 23
+}
+```
+
 ### 3、邮箱校验； 
 - [x] 邮箱校验
  >isEmail: function(input)
@@ -150,7 +171,16 @@
 		 * 消息格式化
 		 */
     >	format: function(message, arr) 
-
+```
+//demo
+var message='我是{0}开发{1}';
+var arr=['java','工程师'];
+Bee.StringUtils.format(message,arr);
+```
+```
+//结果
+我是java开发工程师
+```
 - [x]		/**
 		 * 把连续出现多次的字母字符串进行压缩。如输入:aaabbbbcccccd  输出:3a4b5cd
 		 * @param {String} input
@@ -189,23 +219,79 @@
 
 - [x]   //中缀表达式转后缀表达式
 	>	infixToPostfixExpression: function(expression) 
-
+```
+//demo
+var expression='(2+9)*8-24';		
+Bee.ElementaryArithmeticUtils.infixToPostfixExpression(expression);
+```
+```
+//结果
+2 9 + 8 * 24 -
+```
 - [x]   //中缀表达式转前缀表达式(结果以空格隔开)
 	>	infixToPrefixExpression: function(expression) 
-
+```
+//demo
+var expression='(2+9)*8-24';		
+Bee.ElementaryArithmeticUtils.infixToPrefixExpression(expression);
+```
+```
+//结果
+- * + 2 9 8 24
+```
 - [x]   //解决正负号问题-1转为0-1;+1转为0+1
 	>	eliminatePositiveOrNegativeSign: function(expression) 
 
 - [x]        //把中缀表达式转为前缀表达式，再计算
 	>	calculateByPrefixExpression: function(expression) 
+```
+//demo
+var expression='(2+9)*8-24';		
+Bee.ElementaryArithmeticUtils.calculateByPrefixExpression(expression);
+```
+```
+//结果
+["64"]
+```
 
 - [x]        //把中缀表达式转为后缀表达式，再计算
 	>	calculateByPostfixExpression: function(expression) 
+```
+//demo
+var expression='(2+9)*8-24';		
+Bee.ElementaryArithmeticUtils.calculateByPostfixExpression(expression);
+```
+```
+//结果
+["64"]
+```
 
 - [x]        //横式计算
 	>	horizontalCalculation: function(expression) 
+
+```
+var expression='1+2*(4-3)/5*[(7-6)/8*9]';		
+Bee.ElementaryArithmeticUtils.horizontalCalculation(expression);
+```
+```
+//结果
+1+2*(4-3)/5*[(7-6)/8*9]=1+2*1/5*[1/8*9]=1+2*1/5*1.125=1+2/5*1.125=1+0.4*1.125=1+0.45=1.45
+```
 - [x]        //竖式计算
 	>	verticalCalculation: function(expression)
+```
+var expression='1+2*(4-3)/5*[(7-6)/8*9]';		
+Bee.ElementaryArithmeticUtils.verticalCalculation(expression);
+```
+```
+1+2*(4-3)/5*[(7-6)/8*9]
+=1+2*1/5*[1/8*9]
+=1+2*1/5*1.125
+=1+2/5*1.125
+=1+0.4*1.125
+=1+0.45
+=1.45
+```
 ### 6、正则表达式生成工具类；
 - [ ]   //生成正整数范围的表达式
 	>	positiveIntegerRange:function(minimum,maximum)
@@ -213,20 +299,99 @@
 - [x] 排除某些字符串，即不能包含某些字符串.返回值为RegExp对象
 >createRegexObjMustExclude:function(input, conditions)
 
+参数说明
+ > @param {Object} conditions:里面有多个属性，如下：
+ @param {String} matcherFlag 匹配标识
+ 
+>* 0:数字；
+>* 1：字母；
+>* 2：小写字母；
+>* 3:大写字母；
+>* 4：特殊字符,指英文状态下的标点符号及括号等；
+>* 5:中文;
+>* 6:数字和字母；
+>* 7：数字和小写字母；
+>* 8：数字和大写字母；
+>* 9：数字、字母和特殊字符；
+>* 10：数字和中文；
+>* 11：小写字母和特殊字符；
+>* 12：大写字母和特殊字符；
+>* 13：字母和特殊字符；
+>* 14：小写字母和中文；
+>* 15：大写字母和中文；
+>* 16：字母和中文；
+>* 17：特殊字符、和中文；
+>* 18：特殊字符、字母和中文；
+>* 19：特殊字符、小写字母和中文；
+>* 20：特殊字符、大写字母和中文；
+>* 100：所有字符;
+
+> @param {Array} targetStrArr 排除的字符串，数组格式
+ @param {String} length 长度，可为空。1,2表示长度1到2之间；10，表示10个以上字符；5表示长度为5
+ @param {Boolean} ignoreCase 是否忽略大小写
+ 
+ >条件参数固定格式 conditions={matcherFlag:"0",targetStrArr:[],length:"",ignoreCase:true}
+```
+var conditions={matcherFlag:"0",targetStrArr:['12','00'],length:"10",ignoreCase:true}
+Bee.RegexUtils.createRegexObjMustExclude("1234567009",conditions);
+```
+```
+//生成的正则表达式
+/^(?!.*(?:12|00))\d{10}$/i
+```
 - [x] 校验时排除某些字符串，即不能包含某些字符串
 > isPatternMustExclude: function(input, conditions)
-
+```
+//demo1，10位长度的数字，且不能包含12和00子串
+var conditions={matcherFlag:"0",targetStrArr:['12','00'],length:"10",ignoreCase:true}
+Bee.RegexUtils.isPatternMustExclude("1234567009",conditions);
+```
+```
+//结果
+false
+```
+```
+//demo2,10位长度的数字，且不能包含120子串
+var conditions={matcherFlag:"0",targetStrArr:['120'],length:"10",ignoreCase:true}
+Bee.RegexUtils.isPatternMustExclude("1234567009",conditions);
+```
+```
+//结果
+true
+```
 - [x] 必须同时包含某些字符串,返回值为RegExp对象
 > createRegexObjMustContain:function()
+```
+var conditions={matcherFlag:"0",targetStrArr:['120'],length:"10",ignoreCase:true}
+Bee.RegexUtils.createRegexObjMustContain("1234567009",conditions);
+```
+```
+/^(?=.*120)\d{10}$/i
+```
 - [x] 校验必须同时包含某些字符串
 > isPatternMustContain: function(input, conditions)
-
+```
+//demo1
+var conditions={matcherFlag:"0",targetStrArr:['120'],length:"10",ignoreCase:true}
+Bee.RegexUtils.isPatternMustContain("1234567009",conditions);
+```
+```
+false
+```
+```
+//demo2
+var conditions={matcherFlag:"0",targetStrArr:['12','00'],length:"10",ignoreCase:true}
+Bee.RegexUtils.isPatternMustContain("1234567009",conditions);
+```
+```
+true
+```
 ---
 #待续...
 ------
 
 ###作者 [Mr.Lin]
 >QQ:1510454219@qq.com   
-2017 年 08月 31日    
+2017 年 09月 01日    
 
 
