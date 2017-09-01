@@ -1,4 +1,3 @@
-# bee.js
 # 欢迎使用 bee.js
 ---
 ##该javaScript库主要包括了如下模块：
@@ -70,7 +69,7 @@
 >containsWhitespace: function(input) 
 
 - [x]	//生成指定个数的字符
->		repeat: function(ch, repeatTimes) 
+>	repeat: function(ch, repeatTimes) 
 - [x]	删除空白字符
 >deleteWhitespace: function(input) 
 
@@ -210,41 +209,17 @@
 ### 6、正则表达式生成工具类；
 - [ ]   //生成正整数范围的表达式
 	>	positiveIntegerRange:function(minimum,maximum)
-- [x]        /**
->		 * 校验时排除某些字符串，即不能包含某些字符串
-		 * @param {Object} conditions:里面有多个属性，如下：
-		 * 
-		 * @param {String} matcherFlag 匹配标识
-		 *  0:数字；1：字母；2：小写字母；3:大写字母；4：特殊字符,指英文状态下的标点符号及括号等；5:中文;
-		 * 6:数字和字母；7：数字和小写字母；8：数字和大写字母；9：数字、字母和特殊字符；10：数字和中文；
-		 * 11：小写字母和特殊字符；12：大写字母和特殊字符；13：字母和特殊字符；14：小写字母和中文；15：大写字母和中文；
-		 * 16：字母和中文；17：特殊字符、和中文；18：特殊字符、字母和中文；19：特殊字符、小写字母和中文；20：特殊字符、大写字母和中文；
-		 * 100：所有字符;
-		 * @param {Array} excludeStrArr 排除的字符串，数组格式
-		 * @param {String} length 长度，可为空。1,2表示长度1到2之间；10，表示10个以上字符；5表示长度为5
-		 * @param {Boolean} ignoreCase 是否忽略大小写
-		 * conditions={matcherFlag:"0",excludeStrArr:[],length:"",ignoreCase:true}
-		 */
-	>	isPatternMustExcludeSomeStr: function(input, conditions) 
 
-- [x]   /**
->		 * 校验必须同时包含某些字符串
-		 * @param {String} input
-		 * @param {Object} conditions:里面有多个属性，如下：
-		 * 
-		 * @param {String} matcherFlag 匹配标识
-		 * 0:数字；1：字母；2：小写字母；3:大写字母；4：特殊字符,指英文状态下的标点符号及括号等；5:中文;
-		 * 6:数字和字母；7：数字和小写字母；8：数字和大写字母；9：数字、字母和特殊字符；10：数字和中文；
-		 * 11：小写字母和特殊字符；12：大写字母和特殊字符；13：字母和特殊字符；14：小写字母和中文；15：大写字母和中文；
-		 * 16：字母和中文；17：特殊字符、和中文；18：特殊字符、字母和中文；19：特殊字符、小写字母和中文；20：特殊字符、大写字母和中文；
-		 * 100：所有字符;
-		 * @param {Array} excludeStrArr 排除的字符串，数组格式
-		 * @param {String} length 长度，可为空。1,2表示长度1到2之间；10，表示10个以上字符；5表示长度为5
-		 * @param {Boolean} ignoreCase 是否忽略大小写
-		 * conditions={matcherFlag:"0",containStrArr:[],length:"",ignoreCase:true}
-		 * 
-		 */
-	>	isPatternMustContainSomeStr: function(input, conditions)
+- [x] 排除某些字符串，即不能包含某些字符串.返回值为RegExp对象
+>createRegexObjMustExclude:function(input, conditions)
+
+- [x] 校验时排除某些字符串，即不能包含某些字符串
+> isPatternMustExclude: function(input, conditions)
+
+- [x] 必须同时包含某些字符串,返回值为RegExp对象
+> createRegexObjMustContain:function()
+- [x] 校验必须同时包含某些字符串
+> isPatternMustContain: function(input, conditions)
 
 ---
 #待续...
