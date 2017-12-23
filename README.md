@@ -461,6 +461,7 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 
 ### 修改日志：
 
+2017-12-23：
 ```
 1、修改 endsWith()
 ```
