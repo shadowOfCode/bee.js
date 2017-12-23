@@ -1,4 +1,5 @@
 //区域
+(function() {
 var BEE_AREAS= {
 			110000: '北京市',
 			110100: '市辖区',
@@ -3517,3 +3518,5 @@ var BEE_AREAS= {
 			659003: '图木舒克市',
 			659004: '五家渠市'
 		}
+	window['BEE_AREAS']=BEE_AREAS;
+})();
