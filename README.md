@@ -456,6 +456,13 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 
 ### 作者 [Mr.Lin]
 >QQ:1510454219@qq.com   
-2017 年 09月 01日    
+2017 年 09月 01日   
+
+
+#修改日志：
+修改
+>1、endsWith()
+2、isNegativeDecimal()
+3、isNegativeInteger()
 
 
