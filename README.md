@@ -459,10 +459,15 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 2017 年 09月 01日   
 
 
-#修改日志：
-修改
->1、endsWith()
-2、isNegativeDecimal()
-3、isNegativeInteger()
+### 修改日志：
 
+```
+1、修改 endsWith()
+```
+```
+2、修改 isNegativeDecimal()
+```
+```
+ 3、修改 isNegativeInteger()
+```
 
