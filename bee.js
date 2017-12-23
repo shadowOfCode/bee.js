@@ -1,12 +1,12 @@
 /**
  * 字符串常用工具类
  * Author:LinBilin
- * Date:2017-09-01
+ * Date:2017-12-23
  */
 (function() {
 	var Bee = Bee || {};
 	//区域
-	Bee.areas=BEE_AREAS||{};
+	Bee.areas=window.BEE_AREAS||{};
 	//PhoneUtils命名空间
 	Bee.PhoneUtils = {
 		phoneRegexs: {
@@ -82,7 +82,8 @@
 			return input.indexOf(prefix) === 0;
 		},
 		endsWith: function(input, suffix) {
-			return input.lastIndexOf(suffix) === 0;
+			var regex=new RegExp(this.escapeMetacharacterOfStr(suffix)+"$");
+			return regex.test(input);
 		},
 		contains: function(input, searchSeq) {
 			return input.indexOf(searchSeq) >= 0;
@@ -182,7 +183,7 @@
 		},
 		//负小数
 		isNegativeDecimal: function(input) {
-			return /^\-?(?:0|[1-9]\d*)\.\d+$/.test(input);
+			return /^\-(?:0|[1-9]\d*)\.\d+$/.test(input);
 		},
 		//正小数
 		isPositiveDecimal: function(input) {
@@ -198,7 +199,7 @@
 		},
 		//负整数
 		isNegativeInteger: function(input) {
-			return /^\-?(?:0|[1-9]\d*)$/.test(input);
+			return /^\-(?:0|[1-9]\d*)$/.test(input);
 		},
 		//只包含数字和空格
 		isNumericSpace: function(input) {
