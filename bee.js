@@ -426,13 +426,22 @@
 		 * time1==time2 return 0
 		 */
 		compareTime: function(time1, time2) {
-			if(Date.parse(time1.replace(/-/g, "/")) > Date.parse(time2.replace(/-/g, "/"))) {
-				return 1;
-			} else if(Date.parse(time1.replace(/-/g, "/")) < Date.parse(time2.replace(/-/g, "/"))) {
-				return -1;
-			} else if(Date.parse(time1.replace(/-/g, "/")) == Date.parse(time2.replace(/-/g, "/"))) {
-				return 0;
+			var d1 =time1;
+			var d2 =time2;
+			if((typeof d1)==="string"){
+				 d1 = new Date(Date.parse(d1.replace(/-/g,"/")));
 			}
+			if((typeof d2)==="string"){
+				 d2 = new Date(Date.parse(d2.replace(/-/g,"/")));
+			}
+			var t1=d1.getTime();
+			var t2=d2.getTime();
+			if(t1===t2){
+				return 0;
+			}else if(t1>t2){
+				return 1;
+			}
+			return -1;
 		},
 		//是否闰年
 		isLeapYear: function(year) {
