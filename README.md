@@ -490,4 +490,7 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 1、urlToObj:function(url)
 2、objToUrl:function(baseUrl,obj)
 ```
+```
+3、修改compareTime()日期比较函数
+```
 
