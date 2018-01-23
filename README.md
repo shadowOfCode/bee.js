@@ -449,6 +449,18 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 - [x] //获得时区名和值
 > getZoneNameValue: function(dateObj) 
 
+### 8、url工具
+
+- [x] 获取url参数，转为obj
+ > urlToObj:function(url)
+ 
+ ```
+ var url="https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=62004195_oem_dg&wd=segmentfault&oq=%25E5%2588%25A4%25E6%2596%25AD%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8%25E7%2589%2588%25E6%259C%25AC%25E6%2598%25AF%25E5%2590%25A6%25E4%25BD%258E%25E4%25BA%258Eie8&rsv_pq=d79dd42400021771&rsv_t=8c28cMqwUPOPwQSHQaUBXyeyoarfbqdxd2zF9iM3QeBHAlBhE8pg56EnR7OU4tJeeo2yyx9A&rqlang=cn&rsv_enter=1&inputT=3251&rsv_sug3=70&rsv_sug1=62&rsv_sug7=100&rsv_sug2=1&prefixsug=sef&rsp=1&rsv_sug4=3251";
+ var result=Bee.UrlUtils.urlToObj(url);
+ ```
+ - [x] obj属性值转为url参数
+ > objToUrl:function(baseUrl,obj)
+
 ---
 
 # 待续...
@@ -470,5 +482,12 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 ```
 ```
  3、修改 isNegativeInteger()
+```
+
+2018-01-23：
+```
+新增url工具类
+1、urlToObj:function(url)
+2、objToUrl:function(baseUrl,obj)
 ```
 
