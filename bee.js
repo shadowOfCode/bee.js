@@ -1135,6 +1135,33 @@
 			return pattern.test(input);
 		}
 	};
+	Bee.UrlUtils={
+		//url参数转obj
+		urlToObj:function(url){
+			var regex=/(\w+)=([^&#]*)/igm;
+			var matchStr=null;
+			var obj={};
+			while((matchStr=regex.exec(url))!=null){
+				obj[matchStr[1]]=matchStr[2];
+			}
+			return obj;
+		},
+		//obj转为url参数
+		objToUrl:function(baseUrl,obj){
+			var parameters="";
+			var url="";
+			for(var key in obj){
+				parameters+=key+"="+obj[key]+"&";
+			}
+			parameters=parameters.replace(/&$/,"");
+			if(/\?$/.test(baseUrl)){
+				url=baseUrl+parameters;
+			}else{
+				url=baseUrl.replace(/\/?$/,'?')+parameters;
+			}
+			return url;
+		}
+	};
 	//暴露给window
 	window['Bee'] = Bee;
 })();
