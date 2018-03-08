@@ -10,6 +10,19 @@
 <script type="text/javascript" src="js/bee.js" ></script>
 ```
 ## 该javaScript库主要包括了如下模块：
+
+#### 1、手机号码校验
+#### 2、身份证校验
+#### 3、邮箱校验
+#### 4、字符串常用类
+#### 5、简单四则运算
+#### 6、正则表达式生成工具类
+#### 7、日期工具
+#### 8、url工具
+#### 9、数组工具类
+#### 10、对象工具类
+
+
 ### 1、手机号码校验； 
 
 - [x] //电话号码
@@ -202,6 +215,9 @@ Bee.StringUtils.format(message,arr);
 	>	escapeMetacharacterOfStr: function(input) 
 - [x]		//中文转为unicode编码
 	>	chineseToUnicode: function(input) 
+	
+- [x]	判断字符串是否是嵌套结构  
+    >   isNest: function(rule, str)
 ### 5、简单四则运算； 
 - [x]   //加法
 	>	add: function(operandLeft, operandRight) 
@@ -460,6 +476,9 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
  ```
  - [x] obj属性值转为url参数
  > objToUrl:function(baseUrl,obj)
+ 
+ - [x] url参数转obj,若一个字段有多个值的话,返回数组
+ > parseQueryString: function(url) 
 
 ---
 
@@ -493,4 +512,23 @@ Bee.DateUtils.formt(new Date(),'yyyy年MM月dd日  a hh(HH)时mm分ss秒S毫秒 
 ```
 3、修改compareTime()日期比较函数
 ```
-
+2018-03-08：
+新增方法
+```
+1、判断数组中是否包含某个元素   inArray: function(arr, ele)
+2、判断字符串是否是嵌套结构  isNest: function(rule, str) 
+用法：
+ var rule={'(':')','[':']','{':'}','<':'>'};
+Bee.StringUtils.isNest(rule,"{{sdf(sd[]f)}s }");//true
+Bee.StringUtils.isNest(rule,"(sdffs");//false
+Bee.StringUtils.isNest(rule,"sdff");//true
+Bee.StringUtils.isNest(rule,"(sdf{sdf}sdf)");//true
+Bee.StringUtils.isNest(rule,"(sdf}sdf");//false
+Bee.StringUtils.isNest(rule,"sdf(d{sdf)sd}");//false
+Bee.StringUtils.isNest(rule);//false
+Bee.StringUtils.isNest();//false
+Bee.StringUtils.isNest(rule,"sdf><(d{sdf)sd}");//false
+```
+```
+3、url参数转obj,若一个字段有多个值的话,返回数组  parseQueryString: function(url)
+```
