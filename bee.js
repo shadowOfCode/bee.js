@@ -6,7 +6,7 @@
 (function() {
 	var Bee = Bee || {};
 	//区域
-	Bee.areas=window.BEE_AREAS||{};
+	Bee.areas = window.BEE_AREAS || {};
 	//PhoneUtils命名空间
 	Bee.PhoneUtils = {
 		phoneRegexs: {
@@ -82,7 +82,7 @@
 			return input.indexOf(prefix) === 0;
 		},
 		endsWith: function(input, suffix) {
-			var regex=new RegExp(this.escapeMetacharacterOfStr(suffix)+"$");
+			var regex = new RegExp(this.escapeMetacharacterOfStr(suffix) + "$");
 			return regex.test(input);
 		},
 		contains: function(input, searchSeq) {
@@ -284,6 +284,39 @@
 			return input.replace(/[\u4E00-\u9FA5]/g, function(matchStr) {
 				return "\\u" + matchStr.charCodeAt(0).toString(16);　　　　　　
 			});
+		},
+		/**
+		 * 自定义嵌套符号rule={'(':')','[':']','{':'}','<':'>'};
+		 * @param {Object} rule
+		 * @param {String} str
+		 */
+		isNest: function(rule, str) {
+			if(!(rule && str)) {
+				return false;
+			}
+			var keys = [];
+			var values = [];
+			for(var key in rule) {
+				if(rule.hasOwnProperty(key)) {
+					keys.push(key);
+					values.push(rule[key]);
+				}
+			}
+			var chs = str.split("");
+			var len = chs.length;
+			var stack = [];
+			for(var i = 0; i < len; i++) {
+				if(Bee.ArrayUtils.inArray(keys, chs[i])) {
+					stack.push(rule[chs[i]]);
+				} else {
+					if(chs[i] === stack[stack.length - 1]) {
+						stack.pop();
+					} else if(Bee.ArrayUtils.inArray(values, chs[i])) {
+						return false;
+					}
+				}
+			}
+			return stack.length === 0;
 		}
 
 	};
@@ -292,7 +325,7 @@
 
 	};
 	//IdCardUtils命名空间
-	Bee.IdCardUtils = {			
+	Bee.IdCardUtils = {
 		idCardRegex: {
 			//18位身份证简单校验
 			IDCARD_18_SIMPLE_PATTERN: /^(?:1[1-5]|2[1-3]|3[1-7]|4[1-6]|5[0-4]|6[1-5])\d{4}(?:1[89]|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}(?:\d|[xX])$/,
@@ -337,16 +370,21 @@
 			return false;
 		},
 		//根据18身份证号码获取人员信息
-		getPersonInfo18:function(idCard){			
-			var age=0;
-			var birthday='';
-			var address='';
-			var sex='';
-			address=Bee.areas[idCard.substr(0,2)+'0000']+' '+Bee.areas[idCard.substr(0,4)+'00']+' '+Bee.areas[idCard.substr(0,6)];
-			sex=(idCard.substr(16,1)%2===0)?'女':'男';
-			birthday=idCard.substr(6,8).replace(/(\d{4})(\d{2})(\d{2})/,'$1年$2月$3日');
-			age=new Date().getFullYear()-idCard.substr(6,4)+1;
-			var person={'address':address,'sex':sex,'birthday':birthday,'age':age};
+		getPersonInfo18: function(idCard) {
+			var age = 0;
+			var birthday = '';
+			var address = '';
+			var sex = '';
+			address = Bee.areas[idCard.substr(0, 2) + '0000'] + ' ' + Bee.areas[idCard.substr(0, 4) + '00'] + ' ' + Bee.areas[idCard.substr(0, 6)];
+			sex = (idCard.substr(16, 1) % 2 === 0) ? '女' : '男';
+			birthday = idCard.substr(6, 8).replace(/(\d{4})(\d{2})(\d{2})/, '$1年$2月$3日');
+			age = new Date().getFullYear() - idCard.substr(6, 4) + 1;
+			var person = {
+				'address': address,
+				'sex': sex,
+				'birthday': birthday,
+				'age': age
+			};
 			return person;
 		}
 	};
@@ -359,6 +397,16 @@
 		//获取最小值
 		getMinValue: function(arr) {
 			return Math.min.apply(Math, arr);
+		},
+		//判断某个值是否在数组
+		inArray: function(arr, ele) {
+			var len = arr.length;
+			for(var i = 0; i < len; i++) {
+				if(ele === arr[i]) {
+					return true;
+				}
+			}
+			return false;
 		}
 	};
 	//DateUtils命名空间
@@ -426,19 +474,19 @@
 		 * time1==time2 return 0
 		 */
 		compareTime: function(time1, time2) {
-			var d1 =time1;
-			var d2 =time2;
-			if((typeof d1)==="string"){
-				 d1 = new Date(Date.parse(d1.replace(/-/g,"/")));
+			var d1 = time1;
+			var d2 = time2;
+			if((typeof d1) === "string") {
+				d1 = new Date(Date.parse(d1.replace(/-/g, "/")));
 			}
-			if((typeof d2)==="string"){
-				 d2 = new Date(Date.parse(d2.replace(/-/g,"/")));
+			if((typeof d2) === "string") {
+				d2 = new Date(Date.parse(d2.replace(/-/g, "/")));
 			}
-			var t1=d1.getTime();
-			var t2=d2.getTime();
-			if(t1===t2){
+			var t1 = d1.getTime();
+			var t2 = d2.getTime();
+			if(t1 === t2) {
 				return 0;
-			}else if(t1>t2){
+			} else if(t1 > t2) {
 				return 1;
 			}
 			return -1;
@@ -881,9 +929,9 @@
 		}
 	};
 	//自动生成正则表达式
-	Bee.RegexUtils={
+	Bee.RegexUtils = {
 		//生成正整数范围的表达式
-		positiveIntegerRange:function(minimum,maximum){},
+		positiveIntegerRange: function(minimum, maximum) {},
 		/**
 		 * 排除某些字符串，即不能包含某些字符串.返回值为RegExp对象
 		 * @param {Object} conditions:里面有多个属性，如下：
@@ -900,8 +948,8 @@
 		 * 
 		 * conditions={matcherFlag:"0",targetStrArr:[],length:"",ignoreCase:true}
 		 */
-		createRegexObjMustExclude:function(input, conditions){
-			
+		createRegexObjMustExclude: function(input, conditions) {
+
 			//参数
 			var matcherFlag = conditions.matcherFlag;
 			var targetStrArr = conditions.targetStrArr;
@@ -994,7 +1042,7 @@
 			var pattern = new RegExp(regex, ignoreCase ? "i" : "");
 			return pattern;
 		},
-		
+
 		/**
 		 * 校验时排除某些字符串，即不能包含某些字符串
 		 * @param {Object} conditions:里面有多个属性，如下：
@@ -1031,8 +1079,8 @@
 		 * conditions={matcherFlag:"0",targetStrArr:[],length:"",ignoreCase:true}
 		 * 
 		 */
-		createRegexObjMustContain:function(){
-			
+		createRegexObjMustContain: function() {
+
 			//参数
 			var matcherFlag = conditions.matcherFlag;
 			var targetStrArr = conditions.targetStrArr;
@@ -1140,35 +1188,65 @@
 		 * 
 		 */
 		isPatternMustContain: function(input, conditions) {
-			var pattern=this.createRegexObjMustContain(input, conditions);
+			var pattern = this.createRegexObjMustContain(input, conditions);
 			return pattern.test(input);
 		}
 	};
-	Bee.UrlUtils={
+	Bee.UrlUtils = {
 		//url参数转obj
-		urlToObj:function(url){
-			var regex=/(\w+)=([^&#]*)/igm;
-			var matchStr=null;
-			var obj={};
-			while((matchStr=regex.exec(url))!=null){
-				obj[matchStr[1]]=matchStr[2];
+		urlToObj: function(url) {
+			var regex = /(\w+)=([^&#]*)/igm;
+			var matchStr = null;
+			var obj = {};
+			while((matchStr = regex.exec(url)) != null) {
+				obj[matchStr[1]] = matchStr[2];
 			}
 			return obj;
 		},
 		//obj转为url参数
-		objToUrl:function(baseUrl,obj){
-			var parameters="";
-			var url="";
-			for(var key in obj){
-				parameters+=key+"="+obj[key]+"&";
+		objToUrl: function(baseUrl, obj) {
+			var parameters = "";
+			var url = "";
+			for(var key in obj) {
+				parameters += key + "=" + obj[key] + "&";
 			}
-			parameters=parameters.replace(/&$/,"");
-			if(/\?$/.test(baseUrl)){
-				url=baseUrl+parameters;
-			}else{
-				url=baseUrl.replace(/\/?$/,'?')+parameters;
+			parameters = parameters.replace(/&$/, "");
+			if(/\?$/.test(baseUrl)) {
+				url = baseUrl + parameters;
+			} else {
+				url = baseUrl.replace(/\/?$/, '?') + parameters;
 			}
 			return url;
+		},
+		//url参数转obj,若一个字段有多个值的话,返回数组
+		parseQueryString: function(url) {
+			var obj = {};
+			if(url) {
+				url = url.replace(/#[^#]*$/, "");
+				var index = url.indexOf("?");
+				if(index != -1) {
+					var queryStr = url.substr(index + 1);
+					var marchResult = null;
+					var regex = /(\w+)(=([^&#]+)?)?/g;
+					while((marchResult = regex.exec(queryStr)) != null) {
+						if(marchResult[1] in obj) {
+							var values = obj[marchResult[1]];
+							if(values instanceof Array) {
+								values.push(marchResult[2] ? (marchResult[3] ? marchResult[3] : "") : null);
+								obj[marchResult[1]] = values;
+							} else {
+								var arr = [];
+								arr.push(values);
+								arr.push(marchResult[2] ? (marchResult[3] ? marchResult[3] : "") : null);
+								obj[marchResult[1]] = arr;
+							}
+						} else {
+							obj[marchResult[1]] = marchResult[2] ? (marchResult[3] ? marchResult[3] : "") : null;
+						}
+					}
+				}
+			}
+			return obj;
 		}
 	};
 	//暴露给window
