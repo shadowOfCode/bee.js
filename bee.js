@@ -699,7 +699,12 @@
 		isArithmeticExpression: function(expression) {
 			try {
 				expression = expression.replace(/÷/g, '/').replace(/×/g, '*');
-				var result = eval(expression);
+				var regex=/^(?=.*\d)(?!.*(\[\s*\]|\(\s*\)|{\s*}))[-+*\/()[\]\d{}]+$/;
+				if(regex.test(expression)){
+					var result = eval(expression);
+				}else{
+					return false;
+				}
 			} catch(e) {
 				return false;
 			}
@@ -707,7 +712,10 @@
 		},
 		//计算
 		calculate: function(expression) {
-			var value = eval(expression);
+			var value=NaN;
+			if(this.isArithmeticExpression(expression)){
+				 value = eval(expression);
+			}
 			return value;
 		},
 		//中缀表达式转后缀表达式
