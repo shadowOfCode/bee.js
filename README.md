@@ -5,7 +5,8 @@
 ## 使用：
 
 ```javascript
-<!--area.js存放区域编码的一个常量。由于bee.js里面的getPersonInfo18()方法需要调用这个常量，所以在bee.js之前引入。如果不需要用到这个方法也可以不引入area.js-->
+<!--area.js存放区域编码的一个常量。由于bee.js里面的getPersonInfo18()方法需要调用这个常量，
+所以在bee.js之前引入。如果不需要用到这个方法也可以不引入area.js-->
 <script type="text/javascript" src="js/area.js" ></script>
 <script type="text/javascript" src="js/bee.js" ></script>
 ```
@@ -531,4 +532,9 @@ Bee.StringUtils.isNest(rule,"sdf><(d{sdf)sd}");//false
 ```
 ```
 3、url参数转obj,若一个字段有多个值的话,返回数组  parseQueryString: function(url)
+```
+2019-5-8：
+```
+修改Bee.EmailUtils.isEmail
+感谢https://github.com/junlv的提醒
 ```
