@@ -55,7 +55,7 @@
 		},
 		//邮箱格式校验
 		isEmail: function(input) {
-			return this.EMAIL_PATTERN.test(input);
+			return this.emailRegexs.EMAIL_PATTERN.test(input);
 		}
 	};
 	//StringUtils命名空间
