@@ -538,4 +538,3 @@ Bee.StringUtils.isNest(rule,"sdf><(d{sdf)sd}");//false
 修改Bee.EmailUtils.isEmail
 感谢https://github.com/junlv的提醒
 ```
-git
